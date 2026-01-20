@@ -1,0 +1,26 @@
+{
+  "source_folder": "data/input",
+  "output_folder": "data/output",
+  "mapping_folder": "data/mappings",
+  "mappings": {
+    "WERKS": { "type": "filename_extraction" },
+    "MATNR": { "type": "direct", "source": "ArtikelNr" },
+    "MAKTX": { "type": "direct", "source": "Omschrijving" },
+    "LGORT": { 
+        "type": "map", 
+        "source": "Locatie", 
+        "map_file": "Opdracht_mappingtabellen_ZH01.xlsx", 
+        "sheet_name": "Map_magazijn",
+        "map_key": "Locatie", 
+        "map_value": "LGORT" 
+    },
+    "MEINS": { 
+        "type": "map", 
+        "source": "IntVEh", 
+        "map_file": "Opdracht_mappingtabellen_ZH01.xlsx", 
+        "sheet_name": "Map_UOM",
+        "map_key": "IntVEh", 
+        "map_value": "UOM" 
+    }
+  }
+}
