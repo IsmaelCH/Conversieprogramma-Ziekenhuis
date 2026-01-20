@@ -2,17 +2,33 @@
   "source_folder": "data/input",
   "output_folder": "data/output",
   "mapping_folder": "data/mappings",
+  "template_file": "data/templates/Opdracht_template_MATMAS.xlsx",
   "mappings": {
-    "WERKS": { "type": "filename_extraction" },
-    "MATNR": { "type": "direct", "source": "ArtikelNr" },
-    "MAKTX": { "type": "direct", "source": "Omschrijving" },
+    "WERKS": { 
+        "type": "filename_extraction" 
+    },
+    "MATNR": { 
+        "type": "direct", 
+        "source": "ArtikelNr" 
+    },
+    "MAKTX": {
+        "type": "logic_length",
+        "source": "Omschrijving",
+        "max_length": 40,
+        "map_file": "Opdracht_mappingtabellen_ZH01.xlsx",
+        "sheet_name": "Map_Omschrijving",
+        "map_key": "Omschrijving",
+        "map_value": "MAKTX",
+        "fallback_strategy": "truncate"
+    },
     "LGORT": { 
         "type": "map", 
         "source": "Locatie", 
         "map_file": "Opdracht_mappingtabellen_ZH01.xlsx", 
         "sheet_name": "Map_magazijn",
         "map_key": "Locatie", 
-        "map_value": "LGORT" 
+        "map_value": "LGORT",
+        "fallback_strategy": "source_value"
     },
     "MEINS": { 
         "type": "map", 
@@ -20,7 +36,16 @@
         "map_file": "Opdracht_mappingtabellen_ZH01.xlsx", 
         "sheet_name": "Map_UOM",
         "map_key": "IntVEh", 
-        "map_value": "UOM" 
+        "map_value": "UOM",
+        "fallback_strategy": "default_value",
+        "default_value": "ST"
     }
-  }
+  },
+  "custom_calculations": [
+      {
+          "comment": "Voorbeeld van flexibele code injectie: Berekend veld",
+          "target_column": "VOORBEELD_CALC",
+          "formula": "row['BestelHoev'] * 2 if row['Actief'] == 'J' else 0"
+      }
+  ]
 }
