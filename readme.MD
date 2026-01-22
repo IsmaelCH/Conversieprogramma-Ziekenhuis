@@ -34,6 +34,9 @@ Optioneel kun je een peildatum meegeven:
 python run_batch.py --input data/input --output data/output --date 2025-12-31
 ```
 
+## Aanpasbaarheid
+Het **SAP MATMAS** outputformaat is volledig aanpasbaar. Via het configuratiebestand (`settings.json`) en de Excel mapping tabellen kun je de structuur en regels wijzigen zonder de broncode van de applicatie aan te passen.
+
 ## Projectstructuur
 * **`main_gui.py`**: De gebruikersinterface (Streamlit).
 * **`run_batch.py`**: Script voor automatische bulkverwerking.
